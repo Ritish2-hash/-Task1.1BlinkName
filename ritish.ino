@@ -9,9 +9,10 @@ const int letterSpace = 3 * dotDuration;
 
 void setup() {
   Serial.begin(9600);
+  pinMode(2,INPUT_PULLUP);
   pinMode(ledPin, OUTPUT);
 
-  delay(1500);
+  delay(1800);
 
   initProperties();
 
@@ -24,10 +25,11 @@ void setup() {
 void loop() {
   ArduinoCloud.update();
 
+  int Switchpin = digitalRead(2);
   Serial.print("LED Value: ");
   Serial.println(led);
 
-  if (led) {
+  if (!Switchpin) {
     blinkR();
     blinkI();
     blinkT();
